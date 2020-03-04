@@ -6,7 +6,7 @@ import csv
 from tqdm import tqdm
 from time import sleep
 
-years =  [i for i in range(1993, 2020)]
+years =  [i for i in range(1993, 2019)]
 
 def write_table(table, year):
     output_rows = []
