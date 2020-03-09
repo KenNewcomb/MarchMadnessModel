@@ -1,0 +1,7 @@
+School, OverallGames, OverallWins, OverallLosses, WinLossPCT, SRS, SOS, ConfWins, ConfLosses, HomeWins, HomeLosses, AwayWins, AwayLosses, TeamPoints, OppPoints, MP, FG, FGA, FGPCT, 3P, 3PA, 3PPCT, FT, FTA, FTPCT, ORB, TRB, AST, STL, BLK, TOV, PF
+
+
+School, OverallGames, OverallWins, OverallLosses, WinLossPCT, SRS, SOS, ConfWins, ConfLosses, HomeWins, HomeLosses, AwayWins, AwayLosses, TeamPoints, OppPoints, Pace, ORtg, FTr, 3PAr, TSPCT, TRBPCT, ASTPCT, STLPCT, BLKPCT, EFGPCT, TOVPCT, ORBPCT, FTDIVFGA
+
+
+School, Conf, Win, Loss, Pts, Opp, MOV, SOS, OSRS, DSRS, SRS
