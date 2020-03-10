@@ -14,7 +14,6 @@ print("Using {} games.".format(len(all_games)))
 years = {}
 for year in tqdm(range(1993, 2020), desc='Processing years'):
     with open('data/{}data'.format(year), 'r') as f:
-        print(year)
         headers = ['School', 'OverallGames', 'OverallWins', 'OverallLosses', 'WinLossPCT', 'SRS', 'SOS', 'ConfWins', 'ConfLosses', 'HomeWins', 'HomeLosses', 'AwayWins', 'AwayLosses', 'TeamPoints', 'OppPoints', 'DC1','MP', 'FG', 'FGA', 'FGPCT', '3P', '3PA', '3PPCT', 'FT', 'FTA', 'FTPCT', 'ORB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF']
         data = pd.read_csv(f, index_col=False, names=headers)
         data.dropna(axis='columns',  inplace=True, how='all')
@@ -35,7 +34,12 @@ for year in tqdm(range(1993, 2020), desc='Processing years'):
         data['STL']=(data['STL']-data['STL'].mean())/data['STL'].std()
         data['BLK']=(data['BLK']-data['BLK'].mean())/data['BLK'].std()
         data['TOV']=(data['TOV']-data['TOV'].mean())/data['TOV'].std()
-        data = data[['School', 'WinLossPCT', 'SRS', 'SOS', 'FG', 'FGA', '3P', '3PA', 'FT', 'FTA', 'FGPCT', '3PPCT', 'FTPCT', 'TRB', 'AST', 'STL', 'BLK', 'TOV']]
+        if year == 2002: # Personal fouls are messed up from this year. Use last year's number for the team
+            data['PF'] = 0
+        else:
+            data['PF']=(data['PF']-data['PF'].mean())/data['PF'].std()
+        data = data[['School', 'WinLossPCT', 'SRS', 'SOS', 'FG', 'FGA', '3P', '3PA', 'FT', 'FTA', 'FGPCT', '3PPCT', 'FTPCT', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF']]
+        print(data)
         
     with open('data/{}dataadvanced'.format(year), 'r') as f:
         headers = ['School', 'OverallGames', 'OverallWins', 'OverallLosses', 'WinLossPCT', 'SRS', 'SOS', 'ConfWins', 'ConfLosses', 'HomeWins', 'HomeLosses', 'AwayWins', 'AwayLosses', 'TeamPoints', 'OppPoints', 'DropThisColumn','Pace', 'ORtg', 'FTr', '3PAr', 'TSPCT', 'TRBPCT', 'ASTPCT', 'STLPCT', 'BLKPCT', 'EFGPCT', 'TOVPCT', 'ORBPCT', 'FTDIVFGA']
@@ -100,12 +104,6 @@ for game in tqdm(all_games, desc="Processing NCAA Bracket History..."):
     y_data.append(y)
     y_data.append(y_other)
 
-    # Add other combination of win/loss
-    # x = [seed1, seed2, t1_wlpercent, t1_srs, t1_sos, t1_fgp, t1_3pa, t1_ftp, t1_ftr, t1_3par, t1_ts, t1_ast, t2_wlpercent, t2_srs, t2_sos, t2_fgp, t2_3pa, t2_ftp, t2_ftr, t2_3par, t2_ts, t2_ast]
-
-    #x_other = [t2_wlpercent, t2_srs, t2_sos, t2_fgp, t2_3pa, t2_ftp, t2_orb, t2_stl, t2_blk, t2_tov, t2_pf, t2_ftr, t2_3par, t2_ts, t2_trb, t2_ast, t2_pts, t2_opp, t2_mov, t1_wlpercent, t1_srs, t1_sos, t1_fgp, t1_3pa, t1_ftp, t1_orb, t1_stl, t1_blk, t1_tov, t1_pf, t1_ftr, t1_3par, t1_ts, t1_trb, t1_ast, t1_pts, t1_opp, t1_mov]
-    #X_data.append(x_other)
-    #y_data.append(y_other)
 print(len(X_data))
 print(X_data[0])
 print(X_data[1])
