@@ -34,7 +34,7 @@ for year in tqdm(range(1993, 2020), desc='Processing years'):
         data['STL']=(data['STL']-data['STL'].mean())/data['STL'].std()
         data['BLK']=(data['BLK']-data['BLK'].mean())/data['BLK'].std()
         data['TOV']=(data['TOV']-data['TOV'].mean())/data['TOV'].std()
-        if year == 2002: # Personal fouls are messed up from this year. Use last year's number for the team
+        if year == 2002: # Personal fouls are messed up from this year. Using 0 seems to work okay. 
             data['PF'] = 0
         else:
             data['PF']=(data['PF']-data['PF'].mean())/data['PF'].std()
@@ -103,14 +103,6 @@ for game in tqdm(all_games, desc="Processing NCAA Bracket History..."):
         y_other = 1
     y_data.append(y)
     y_data.append(y_other)
-
-print(len(X_data))
-print(X_data[0])
-print(X_data[1])
-print(y_data[0])
-print(y_data[1])
-    
-
 
 
 with open('vectors/X_data', 'wb') as f:

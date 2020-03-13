@@ -22,7 +22,7 @@ def write_table(table, year, s=""):
             f.write(",".join(row) + '\n')
 
 for year in tqdm(years, desc='Downloading data...'):
-    sleep(0.5)
+    sleep(2.0)
     # Basic stats
     page = requests.get('https://www.sports-reference.com/cbb/seasons/{}-school-stats.html'.format(year))
     soup = BeautifulSoup(page.content,features="html.parser")

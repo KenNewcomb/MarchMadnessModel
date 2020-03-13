@@ -1,10 +1,12 @@
 MarchMadnessModel
 -----------------
 
-A machine learning model with the goal of predicting the results of 2020 March Madness.
+A machine learning model that can predict the results of the NCAA March Madness Tournament.
 
-To-Do
------
+## Usage
 
-1. Feature Scaling
-2. Add Ratings (MOV, etc)
+Python3 dependencies can be found in the requirements.txt file.
+
+The model is trained on NCAA March Madness data years 1993-2016, while 2017-2019 are left out for testing. To predict the results of the 2019 NCAA Tournament, execute:
+
+`python3 predict_2019.py`

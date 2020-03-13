@@ -15,7 +15,7 @@ with open('vectors/X_data', 'rb') as f:
 with open('vectors/y_data', 'rb') as f:
     y_data = np.asarray(pickle.load(f))
 
-# Since I'm using both representations of each game (T1:T2, T2:T1), I want to keep pairs together. The model.fit will shuffle.
+# Since I'm using both representations of each game (T1:T2, T2:T1), I want to keep pairs together. model.fit(shuffle=True) will shuffle.
 X_train, X_test, y_train, y_test = train_test_split(X_data, y_data, test_size=0.2, shuffle=False)
 
 from tensorflow.keras.utils import to_categorical
@@ -29,7 +29,6 @@ model.add(Dropout(0.5))
 model.add(Dense(150, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(2, activation='softmax'))
-#opt = tf.keras.optimizers.Adam(0.0001)
 
 es = tf.keras.callbacks.EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=100, restore_best_weights=True)
 adam = optimizers.Adam(lr=0.0001)
